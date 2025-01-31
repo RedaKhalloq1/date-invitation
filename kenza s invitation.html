@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reda's Secret Stalker/Lover</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #ff4b3a;
+            transform: scale(1.05);
+        }
+        img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .no-button {
+            position: relative;
+        }
+        .joyful-container {
+            background: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: dance 2s infinite;
+        }
+        @keyframes dance {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="page1">
+        <h1>Hey, it's Reda, your secret stalker/lover!</h1>
+        <p>I wanna ask you a few questions...</p>
+        <button onclick="nextPage()">Next</button>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        let jumpCount = 0;
+
+        function nextPage() {
+            if (currentPage === 1) {
+                document.querySelector('body').innerHTML = `
+                    <div class="container" id="page2">
+                        <h1>Actually, it's only one question but that's not the point 🙂</h1>
+                        <button onclick="nextPage()">Next</button>
+                    </div>
+                `;
+                currentPage = 2;
+            } else if (currentPage === 2) {
+                document.querySelector('body').innerHTML = `
+                    <div class="container" id="page3">
+                        <h1>Please don't skip, you'll like it! I promise 🙂</h1>
+                        <button onclick="nextPage()">Next</button>
+                    </div>
+                `;
+                currentPage = 3;
+            } else if (currentPage === 3) {
+                showMainPage();
+                currentPage = 4;
+            }
+        }
+
+        function showMainPage() {
+            document.querySelector('body').innerHTML = `
+                <div class="container" id="mainPage">
+                    <img src="https://cdn.britannica.com/92/211792-050-E764F875/American-singer-Ariana-Grande-2018.jpg" alt="Ariana Grande">
+                    <h1>Would You Like to Go on a Date With Me, Kenza?</h1>
+                    <button onclick="acceptDate()">Yes!</button>
+                    <button class="no-button" id="noButton" onclick="jumpNo()">No</button>
+                </div>
+            `;
+        }
+
+        function acceptDate() {
+            document.querySelector('body').innerHTML = `
+                <div class="joyful-container">
+                    <div class="container">
+                        <img src="https://hips.hearstapps.com/hmg-prod/images/ariana-grande-attends-the-wsj-magazine-2024-innovator-news-photo-1733523847.jpg" alt="Ariana Grande Dancing">
+                        <h1>Congratulations! You've made the right choice!</h1>
+                        <p>Kenza, darling! It's Ariana. I'm absolutely thrilled for you, and I can't believe you made such an amazing choice!</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function jumpNo() {
+            const noButton = document.getElementById('noButton');
+            jumpCount++;
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${Math.random() * 80 + 10}%`;
+            noButton.style.top = `${Math.random() * 80 + 10}%`;
+
+            if (jumpCount > 5) {
+                alert("Are you sure? Come on, it'll be fun!");
+                jumpCount = 0;
+            }
+        }
+    </script>
+</body>
+</html>
